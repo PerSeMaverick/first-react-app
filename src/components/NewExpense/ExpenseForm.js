@@ -1,10 +1,10 @@
 import React, { useState } from "react";
 import "./ExpenseForm.css";
 
-function NewExpenseForm() {
-  const [enteredTitle, setenteredTitle] = useState("");
-  const [enteredPrice, setenteredPrice] = useState("");
-  const [enteredDate, setenteredDate] = useState("");
+function NewExpenseForm(props) {
+  const [enteredTitle, setEnteredTitle] = useState("");
+  const [enteredPrice, setEnteredPrice] = useState("");
+  const [enteredDate, setEnteredDate] = useState("");
 
   // const [userInput, setUserInput] = useState({
   //   enteredTitle: "",
@@ -13,17 +13,17 @@ function NewExpenseForm() {
   // });
 
   const onTitleChange = (event) => {
-    setenteredTitle(event.target.value);
+    setEnteredTitle(event.target.value);
 
     // setUserInput((prevState) => {   상태 업태이트가 이전 상태에 의존가능하다
     //   return { ...prevState, enteredTitle: event.target.value };
     // });
   };
   const onPriceChange = (event) => {
-    setenteredPrice(event.target.value);
+    setEnteredPrice(event.target.value);
   };
   const onDateChange = (event) => {
-    setenteredDate(event.target.value);
+    setEnteredDate(event.target.value);
   };
 
   const onSubmit = (event) => {
@@ -34,9 +34,14 @@ function NewExpenseForm() {
       price: enteredPrice,
       date: enteredDate,
     };
-    setenteredTitle("");
-    setenteredPrice("");
-    setenteredDate("");
+
+    //savedExpenseData 키에서 얻은값이 함수이기 때문에 실행할 수 있다
+    //savedExpenseData.savedExpenseData
+    props.savedExpenseData(expenseData); //NewExpense로 expenseData객체전달
+
+    setEnteredTitle("");
+    setEnteredPrice("");
+    setEnteredDate("");
   };
 
   return (

@@ -29,7 +29,7 @@ const App = () => {
   return (
     <div>
       <NewExpense />
-      <Expenses item={expenses} />
+      <Expenses item={expenses} /> // item이 expenses객체를 가리키고 있다.
     </div>
   );
 }; // item 객체를 props값으로 전달

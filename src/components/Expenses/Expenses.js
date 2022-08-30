@@ -8,8 +8,8 @@ function Expenses(props) {
   return (
     <Card className="expenses">
       <ExpenseItem
-        title={props.item[0].title} // 여기서 item은 전달받은 item객체의 키 값, item객체.item[0].title
-        price={props.item[0].price}
+        title={props.item[0].title} // 여기서 item은 전달받은 item객체의 키 값,
+        price={props.item[0].price} // props중에.expenses객체의[0].title
         date={props.item[0].date}
       />
       <ExpenseItem
