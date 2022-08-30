@@ -1,6 +1,7 @@
 import React from "react";
 
 import Expenses from "./components/Expenses/Expenses";
+import NewExpense from "./components/NewExpense/NewExpense";
 
 const App = () => {
   const expenses = [
@@ -25,7 +26,12 @@ const App = () => {
     },
   ];
 
-  return <Expenses item={expenses} />;
+  return (
+    <div>
+      <NewExpense />
+      <Expenses item={expenses} />
+    </div>
+  );
 }; // item 객체를 props값으로 전달
 
 export default App;
