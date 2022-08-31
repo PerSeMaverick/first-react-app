@@ -3,13 +3,13 @@ import "./NewExpense.css";
 
 import ExpenseForm from "./ExpenseForm";
 
-function NewExpense() {
+function NewExpense(props) {
   const onSavedExpenseData = (enteredExpenseData) => {
     const expenseData = {
       ...enteredExpenseData, // 매개변수로 받은 ExpenseForm의 expenseData를 저장하고 새로운 객체생성
       id: Math.random().toString(),
     };
-    console.log(expenseData);
+    props.onAddNewExpense(expenseData);
   };
 
   return (

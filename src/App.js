@@ -26,10 +26,14 @@ const App = () => {
     },
   ];
 
+  const onAddNewExpense = (expenses) => {
+    console.log(expenses);
+  };
+
   return (
     <div>
-      <NewExpense />
-      <Expenses item={expenses} /> // item이 expenses객체를 가리키고 있다.
+      <NewExpense onAddNewExpense={onAddNewExpense} />
+      <Expenses item={expenses} /* item이 expenses객체를 가리키고 있다.*/ />
     </div>
   );
 }; // item 객체를 props값으로 전달

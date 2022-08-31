@@ -1,15 +1,18 @@
 import React from "react";
 
 import ExpenseItem from "./ExpenseItem";
+import ExpensesFilter from "./ExpensesFilter";
 import Card from "../UI/Card"; // ..을하면 한단계 올라간다
+
 import "./Expenses.css";
 
 function Expenses(props) {
   return (
     <Card className="expenses">
+      <ExpensesFilter />
       <ExpenseItem
         title={props.item[0].title} // 여기서 item은 전달받은 item객체의 키 값,
-        price={props.item[0].price} // props중에.expenses객체의[0].title
+        price={props.item[0].price} // props중에.expenses객체(item)의[0].title
         date={props.item[0].date}
       />
       <ExpenseItem
