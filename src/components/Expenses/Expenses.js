@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 
 import ExpenseItem from "./ExpenseItem";
 import ExpensesFilter from "./ExpensesFilter";
@@ -7,9 +7,15 @@ import Card from "../UI/Card"; // ..을하면 한단계 올라간다
 import "./Expenses.css";
 
 function Expenses(props) {
+  let [selected, onSelected] = useState("2022");
+
+  const onSelectedYear = (year) => {
+    onSelected(year);
+  };
+
   return (
     <Card className="expenses">
-      <ExpensesFilter />
+      <ExpensesFilter selected={selected} onSelectedYear={onSelectedYear} />
       <ExpenseItem
         title={props.item[0].title} // 여기서 item은 전달받은 item객체의 키 값,
         price={props.item[0].price} // props중에.expenses객체(item)의[0].title
