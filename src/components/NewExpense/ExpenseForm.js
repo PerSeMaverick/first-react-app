@@ -1,74 +1,84 @@
 import React, { useState } from "react";
+
 import "./ExpenseForm.css";
 
-function NewExpenseForm(props) {
+const ExpenseForm = (props) => {
   const [enteredTitle, setEnteredTitle] = useState("");
-  const [enteredPrice, setEnteredPrice] = useState("");
+  const [enteredAmount, setEnteredAmount] = useState("");
   const [enteredDate, setEnteredDate] = useState("");
-
   // const [userInput, setUserInput] = useState({
-  //   enteredTitle: "",
-  //   enteredPrice: "",
-  //   enteredDate: "",
+  //   enteredTitle: '',
+  //   enteredAmount: '',
+  //   enteredDate: '',
   // });
 
-  const onTitleChange = (event) => {
+  const titleChangeHandler = (event) => {
     setEnteredTitle(event.target.value);
-
-    // setUserInput((prevState) => {   상태 업태이트가 이전 상태에 의존가능하다
+    // setUserInput({
+    //   ...userInput,
+    //   enteredTitle: event.target.value,
+    // });
+    // setUserInput((prevState) => {
     //   return { ...prevState, enteredTitle: event.target.value };
     // });
   };
-  const onPriceChange = (event) => {
-    setEnteredPrice(event.target.value);
-  };
-  const onDateChange = (event) => {
-    setEnteredDate(event.target.value);
+
+  const amountChangeHandler = (event) => {
+    setEnteredAmount(event.target.value);
+    // setUserInput({
+    //   ...userInput,
+    //   enteredAmount: event.target.value,
+    // });
   };
 
-  const onSubmit = (event) => {
+  const dateChangeHandler = (event) => {
+    setEnteredDate(event.target.value);
+    // setUserInput({
+    //   ...userInput,
+    //   enteredDate: event.target.value,
+    // });
+  };
+
+  const submitHandler = (event) => {
     event.preventDefault();
 
     const expenseData = {
       title: enteredTitle,
-      price: enteredPrice,
-      date: enteredDate,
+      amount: enteredAmount,
+      date: new Date(enteredDate),
     };
 
-    //savedExpenseData 키에서 얻은값이 함수이기 때문에 실행할 수 있다
-    //savedExpenseData.savedExpenseData
-    props.savedExpenseData(expenseData); //NewExpense로 expenseData객체전달
-
+    props.onSaveExpenseData(expenseData);
     setEnteredTitle("");
-    setEnteredPrice("");
+    setEnteredAmount("");
     setEnteredDate("");
   };
 
   return (
-    <form onSubmit={onSubmit}>
+    <form onSubmit={submitHandler}>
       <div className="new-expense__controls">
         <div className="new-expense__control">
-          <label>Title:{enteredTitle}</label>
-          <input type="text" value={enteredTitle} onChange={onTitleChange} />
+          <label>Title</label>
+          <input type="text" value={enteredTitle} onChange={titleChangeHandler} />
         </div>
         <div className="new-expense__control">
-          <label>${enteredPrice}</label>
+          <label>Amount</label>
           <input
             type="number"
-            value={enteredPrice}
             min="0.01"
             step="0.01"
-            onChange={onPriceChange}
+            value={enteredAmount}
+            onChange={amountChangeHandler}
           />
         </div>
         <div className="new-expense__control">
-          <label>Date:{enteredDate}</label>
+          <label>Date</label>
           <input
             type="date"
-            value={enteredDate}
             min="2019-01-01"
-            max="2023-12-31"
-            onChange={onDateChange}
+            max="2022-12-31"
+            value={enteredDate}
+            onChange={dateChangeHandler}
           />
         </div>
       </div>
@@ -77,6 +87,6 @@ function NewExpenseForm(props) {
       </div>
     </form>
   );
-}
+};
 
-export default NewExpenseForm;
+export default ExpenseForm;

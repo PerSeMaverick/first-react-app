@@ -1,22 +1,22 @@
 import React from "react";
-import "./NewExpense.css";
 
 import ExpenseForm from "./ExpenseForm";
+import "./NewExpense.css";
 
-function NewExpense(props) {
-  const onSavedExpenseData = (enteredExpenseData) => {
+const NewExpense = (props) => {
+  const saveExpenseDataHandler = (enteredExpenseData) => {
     const expenseData = {
-      ...enteredExpenseData, // 매개변수로 받은 ExpenseForm의 expenseData를 저장하고 새로운 객체생성
+      ...enteredExpenseData,
       id: Math.random().toString(),
     };
-    props.onAddNewExpense(expenseData);
+    props.onAddExpense(expenseData);
   };
 
   return (
     <div className="new-expense">
-      <ExpenseForm savedExpenseData={onSavedExpenseData} />
-    </div> // savedExpenseData 속성은 onSavedExpenseData함수를 가리키고 있다.
+      <ExpenseForm onSaveExpenseData={saveExpenseDataHandler} />
+    </div>
   );
-}
+};
 
 export default NewExpense;

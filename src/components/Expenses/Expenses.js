@@ -1,43 +1,44 @@
 import React, { useState } from "react";
 
 import ExpenseItem from "./ExpenseItem";
+import Card from "../UI/Card";
 import ExpensesFilter from "./ExpensesFilter";
-import Card from "../UI/Card"; // ..을하면 한단계 올라간다
-
 import "./Expenses.css";
 
-function Expenses(props) {
-  let [selected, onSelected] = useState("2022");
+const Expenses = (props) => {
+  const [filteredYear, setFilteredYear] = useState("2020");
 
-  const onSelectedYear = (year) => {
-    onSelected(year);
+  const filterChangeHandler = (selectedYear) => {
+    setFilteredYear(selectedYear);
   };
 
   return (
-    <Card className="expenses">
-      <ExpensesFilter selected={selected} onSelectedYear={onSelectedYear} />
-      <ExpenseItem
-        title={props.item[0].title} // 여기서 item은 전달받은 item객체의 키 값,
-        price={props.item[0].price} // props중에.expenses객체(item)의[0].title
-        date={props.item[0].date}
-      />
-      <ExpenseItem
-        title={props.item[1].title}
-        price={props.item[1].price}
-        date={props.item[1].date}
-      />
-      <ExpenseItem
-        title={props.item[2].title}
-        price={props.item[2].price}
-        date={props.item[2].date}
-      />
-      <ExpenseItem
-        title={props.item[3].title}
-        price={props.item[3].price}
-        date={props.item[3].date}
-      />
-    </Card>
+    <div>
+      <Card className="expenses">
+        <ExpensesFilter selected={filteredYear} onChangeFilter={filterChangeHandler} />
+        <ExpenseItem
+          title={props.items[0].title}
+          amount={props.items[0].amount}
+          date={props.items[0].date}
+        />
+        <ExpenseItem
+          title={props.items[1].title}
+          amount={props.items[1].amount}
+          date={props.items[1].date}
+        />
+        <ExpenseItem
+          title={props.items[2].title}
+          amount={props.items[2].amount}
+          date={props.items[2].date}
+        />
+        <ExpenseItem
+          title={props.items[3].title}
+          amount={props.items[3].amount}
+          date={props.items[3].date}
+        />
+      </Card>
+    </div>
   );
-}
+};
 
 export default Expenses;
