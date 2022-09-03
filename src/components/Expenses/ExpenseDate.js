@@ -5,7 +5,7 @@ import "./ExpenseDate.css";
 const ExpenseDate = (props) => {
   const month = props.date.toLocaleString("en-US", { month: "long" });
   const day = props.date.toLocaleString("en-US", { day: "2-digit" });
-  const year = props.date.getFullYear();
+  const year = props.date.getFullYear(); // 연도를 출력하는 함수
 
   return (
     <div className="expense-date">
